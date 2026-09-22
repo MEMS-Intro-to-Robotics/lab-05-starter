@@ -35,6 +35,7 @@ from rclpy.signals import SignalHandlerOptions
 from sensor_msgs.msg import JointState
 
 from lab05_moveit.scripts.pen import PenClient
+from lab05_moveit.scripts.table import add_table
 
 # TODO: Put your NetID here so it appears in your screenshots.
 # You can also leave this alone and export NETID in your container instead.
@@ -148,11 +149,12 @@ class MotionPlannerNode(Node):
         """Home, then your own retract configuration, in joint space."""
         self.get_logger().info("Milestone 1: joint-space motion")
 
+        # The Gen3 Lite's own retract pose, the one the real arm folds into.
         # TODO: Replace these angles (radians, joint_1 first) with a retract
         # configuration you chose yourself. Use the Joints tab of the RViz
         # MotionPlanning panel to find one that is collision free and clear of
         # the table, then read the six values back out.
-        self.retract_joints = [0.0, -1.2, 1.4, 0.0, 1.1, 0.0]
+        self.retract_joints = [-0.0527, 0.3669, 2.59, -1.5359, -0.6988, -1.5189]
 
         self.pen.clear()
         self.get_logger().info("Moving to Home.")
@@ -254,6 +256,8 @@ def main(args: list[str] | None = None) -> None:
 
     try:
         if node.wait_until_ready():
+            add_table(node, node.moveit2)
+            time.sleep(1.0)  # let the planning scene update
             for number in requested:
                 milestones[number]()
                 time.sleep(1.0)

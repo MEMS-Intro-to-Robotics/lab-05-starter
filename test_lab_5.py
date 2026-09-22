@@ -23,7 +23,7 @@ REPO_ROOT = Path(__file__).resolve().parent
 PACKAGE_ROOT = Path("ros2_ws/src/lab05_moveit")
 PYTHON_PACKAGE = PACKAGE_ROOT / "lab05_moveit"
 SCRIPTS_PACKAGE = PYTHON_PACKAGE / "scripts"
-REQUIRED_NODE_FILES = ("motion_planner.py", "m5_detour.py", "pen.py")
+REQUIRED_NODE_FILES = ("motion_planner.py", "m5_detour.py", "pen.py", "table.py")
 REQUIRED_SCREENSHOTS = (
     "m1_joint_home_to_retract.png",
     "m2_cartesian_path.png",

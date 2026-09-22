@@ -25,6 +25,7 @@ from rclpy.node import Node
 from rclpy.signals import SignalHandlerOptions
 
 from lab05_moveit.scripts.pen import PenClient
+from lab05_moveit.scripts.table import add_table
 
 # TODO: Put your NetID here so it appears in your screenshots.
 NETID = os.getenv("NETID", "your_netid").strip()
@@ -129,6 +130,8 @@ def main(args: list[str] | None = None) -> None:
 
     try:
         if node.wait_until_ready():
+            add_table(node, node.moveit2)
+            time.sleep(1.0)  # let the planning scene update
             node.run()
     finally:
         node.pen.up()

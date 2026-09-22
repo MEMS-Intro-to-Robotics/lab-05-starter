@@ -11,6 +11,8 @@ Update this README with your name, NetID, and a 1–3 line summary of your work.
     own retract configuration; milestones 2 to 4 are yours
   - `m5_detour.py`: the milestone 5 scaffold
   - `pen.py`: complete; draws the gripper's actual path in RViz. Do not edit it.
+  - `table.py`: complete; puts the table under the arm in Gazebo and in MoveIt.
+    Do not edit it.
 - `lab05.rviz`: the RViz layout for this lab, with the pen's line already set up
 - `docs/`: your five milestone screenshots
 - `test_lab_5.py`: automated repository checks
