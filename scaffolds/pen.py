@@ -53,7 +53,7 @@ class Pen(Node):
         self.declare_parameter("tip", "end_effector_link")
         self.declare_parameter("rate_hz", 20.0)
         self.declare_parameter("min_step", 0.002)  # meters between recorded points
-        self.declare_parameter("width", 0.004)  # line width, meters
+        self.declare_parameter("width", 0.010)  # line width, meters
         self.declare_parameter("color", [0.0, 0.33, 0.61])  # red, green, blue in 0-1
 
         self._frame = self.get_parameter("frame").value
