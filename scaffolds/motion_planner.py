@@ -4,10 +4,9 @@ Copy this file into your package before you edit it:
 
     cp scaffolds/motion_planner.py ros2_ws/src/lab05_moveit/lab05_moveit/scripts/
 
-Milestone 1 is written out for you, apart from choosing your own retract
-configuration. Read it: every later milestone uses the same pattern of plan,
-execute, wait, and check. Milestones 2 to 4 are yours to write, and the manual
-states what each one has to do.
+Milestone 1 is complete apart from choosing your own retract configuration.
+Its plan, execute, wait, and check sequence is the pattern for the later
+milestones. Implement milestones 2 to 4 according to the manual.
 
 Run it with the simulation and MoveIt already running:
 
@@ -124,9 +123,9 @@ class MotionPlannerNode(Node):
     def move_to_joints(self, joint_positions: list[float], attempts: int = 3) -> bool:
         """Plan and execute a joint-space motion, retrying a failed plan.
 
-        Planning is randomized: the same request can fail once and succeed on the
-        next attempt, especially with an obstacle nearby. A failed plan is not the
-        same as an impossible one, so try again before you change anything.
+        Planning is randomized, so the same request can fail once and succeed on
+        the next attempt, especially with an obstacle nearby. Retry before changing
+        the goal or planning scene.
         """
         for attempt in range(1, attempts + 1):
             trajectory = self.moveit2.plan(joint_positions=joint_positions)
@@ -184,13 +183,13 @@ class MotionPlannerNode(Node):
         # the last one.
 
     def run_milestone_3(self) -> None:
-        """A collision object the planner must respect. See the manual."""
+        """Show how a collision object changes the planning result. See the manual."""
         self.get_logger().info("Milestone 3: the planning scene")
         # TODO: Add a collision box to the planning scene, show that it changes
         # what the planner will do, then remove it and show the difference.
 
     def run_milestone_4(self) -> None:
-        """Open and close the gripper, and prove it moved. See the manual."""
+        """Open and close the gripper, then verify its measured position. See the manual."""
         self.get_logger().info("Milestone 4: gripper control")
         # TODO: Open and close the gripper, and read the finger joint back from
         # /joint_states to confirm it moved. self.joint_position(GRIPPER_JOINT)

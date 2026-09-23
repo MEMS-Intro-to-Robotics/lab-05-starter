@@ -4,9 +4,9 @@ Copy this file into your package before you edit it:
 
     cp scaffolds/m5_detour.py ros2_ws/src/lab05_moveit/lab05_moveit/scripts/
 
-This milestone is yours to design. The manual gives the contract and the
-evidence you have to collect. The helpers below are the same ones milestone 1
-uses, so you can concentrate on the obstacle and the motion.
+Choose the start, goal, obstacle, and motion type. The manual gives the
+requirements and the evidence to collect. The helpers below are the same ones
+used in milestone 1.
 
     ros2 run lab05_moveit pen        # in its own terminal, first
     ros2 run lab05_moveit m5_detour
@@ -68,8 +68,8 @@ class M5DetourNode(Node):
     def move_to_joints(self, joint_positions: list[float], attempts: int = 3) -> bool:
         """Plan and execute a joint-space motion, retrying a failed plan.
 
-        Planning around an obstacle fails outright some of the time, so a single
-        failure tells you nothing. Retry before you move the box.
+        Planning is randomized, so one attempt can fail even when a detour exists.
+        Retry before moving the box.
         """
         for attempt in range(1, attempts + 1):
             trajectory = self.moveit2.plan(joint_positions=joint_positions)
@@ -97,9 +97,8 @@ class M5DetourNode(Node):
 
         # TODO: Remove the collision box so the scene is clean for the next run.
 
-        # TODO: Replace this line with the evidence the manual asks for. As it
-        # stands the script reports nothing about what the arm did, and an empty
-        # run looks exactly like a working one.
+        # TODO: Replace this line with the evidence the manual asks for: success,
+        # planning attempts, and duration for each motion.
         self.get_logger().info("m5_detour finished.")
 
 
